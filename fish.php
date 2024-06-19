@@ -70,6 +70,14 @@
                 Known for their schooling behavior, perch are often found in large groups, particularly during spawning seasons. 
                 They are a popular species for both recreational and commercial fishing, appreciated for their cooperative feeding habits and accessibility, making them an important part of local fishing communities and ecosystems.</p>
         </div>
+        <div id="musky-post">
+            <h3>Musky</h3>
+            <img src="images/musky.png" alt="Perch" height="100px" width="200px"> <!-- https://bassonline.com/freshwater-species/musky-fish/ -->
+            <p>The muskellunge, commonly known as the musky, is a large, freshwater fish native to North America. Renowned for its impressive size and predatory nature, it can grow over 50 inches long and weigh more than 30 pounds. 
+                Muskies have elongated bodies, pointed snouts, and sharp teeth, making them formidable hunters that prey on fish, frogs, and small mammals. 
+                Found primarily in the northern United States and Canada, they inhabit lakes and rivers with clear water and abundant vegetation. 
+                Anglers prize muskies for their challenging catch, often referring to them as the "fish of 10,000 casts" due to their elusive nature.</p>
+        </div>
     </div>
     <?php include('footer.php'); ?>
 </body>

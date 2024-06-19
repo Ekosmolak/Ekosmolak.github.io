@@ -1,12 +1,12 @@
 <?php
 
-/*******w******** 
+// /*******w******** 
     
-    Name: Eric Kosmolak
-    Date: May 23, 2024
-    Description: Web Dev 2 Assignment 3 Blog
+//     Name: Eric Kosmolak
+//     Date: May 23, 2024
+//     Description: Web Dev 2 Final Project
 
-****************/
+// ****************/
 
 require('connect.php');
 
@@ -48,7 +48,7 @@ if(isset($_GET['Review_Id']))
         <small class="review-post-date">
             Posted on
             <time><?=date_format(date_create($review['date_posted']), 'F j, Y') ?><time>&ensp; 
-            <a href="editreview.php?id=<?=$review['Review_Id']?>" class="review-post-edit">edit</a>
+            <a href="editreview.php?Review_Id=<?=$review['Review_Id']?>" class="review-post-edit">edit</a>
         </small>
         <p class="review-post-content">
             <?=$review['Review_Content']?>

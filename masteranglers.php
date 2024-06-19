@@ -52,7 +52,6 @@ $statement->execute();
 
             <small class="catchlog-post-date">
                 Caught on <time><?=date_format(date_create($row['Date_Caught']), 'F j, Y') ?></time> &ensp;
-                <a href="edit.php?id=<?=$row['Catch_Id']?>" class="catch-post-edit">edit</a>
             </small>
         <br><br>
         <?php endwhile; ?>

@@ -11,7 +11,9 @@
 require('connect.php');
 
 // SQL is written as a String.
-$query = "SELECT * FROM review ORDER BY date_posted DESC LIMIT 5";
+$query = "SELECT * FROM review 
+JOIN client ON review.Client_ID = client.Client_Id
+ORDER BY date_posted DESC LIMIT 5";
 
 // A PDO::Statement is prepared from the query
 $statement = $db->prepare($query);
@@ -48,8 +50,12 @@ $statement->execute();
 
         <?php while($row = $statement->fetch()): ?>
             <h3 class="review-post-title">
-                <a href="show.php?id=<?=$row['Review_Id']?>"><?=$row['Review_Title']?></a>
+                <a href="showreview.php?Review_Id=<?=$row['Review_Id']?>"><?=$row['Review_Title']?></a>
             </h3>
+
+            <h4 class="review-post-client">
+                Review by <?=$row['First_Name']?> <?=$row['Last_Name']?>
+            </h4>
 
             <small class="review-post-date">
                 Posted on <time datetime="<?=$row['date_posted']?>"><?=
@@ -59,7 +65,7 @@ $statement->execute();
             <p class="review-post-content">
                 <?php if(strlen($row['Review_Content']) > 200) : ?>
                     <?=substr($row['Review_Content'], 0, 200)?>
-                    ...<a href="show.php?id=<?=$row['id']?>">Read full post</a>
+                    ...<a href="showreview.php?Review_Id=<?=$row['id']?>">Read full post</a>
                 <?php else: ?>
                     <?=$row['Review_Content'] ?>
                 <?php endif ?>

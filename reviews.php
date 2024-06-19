@@ -11,7 +11,7 @@
 require('connect.php');
 
 // SQL is written as a String.
-$query = "SELECT * FROM review ORDER BY date_posted DESC LIMIT 10";
+$query = "SELECT * FROM review JOIN client ON review.Client_Id = client.Client_Id ORDER BY date_posted DESC LIMIT 10";
 
 // A PDO::Statement is prepared from the query
 $statement = $db->prepare($query);
@@ -36,6 +36,9 @@ $statement->execute();
 
     <div id="wrapper">
         <h2>Here are our latest reviews!</h2>
+        <h3>Want to add your own? <a href="postreview.php">Click Here</a></h3>
+        <br>
+        
         <?php if($statement->rowCount() == 0): ?>
             <div class="text-center py-1">
                 <p>No Reviews Yet!</p>
@@ -44,24 +47,28 @@ $statement->execute();
 
         <?php while($row = $statement->fetch()): ?>
             <h3 class="review-post-title">
-                <a href="showreview.php?id=<?=$row['Review_Id']?>"><?=$row['Review_Title']?></a>
+                <?=$row['Review_Title']?></a>
             </h3>
+
+            <h4 class="review-post-client">
+                Review by <?=$row['First_Name']?> <?=$row['Last_Name']?>
+            </h4>
 
             <small class="review-post-date">
                 Posted on <time datetime="<?=$row['date_posted']?>"><?=
                 date_format(date_create($row['date_posted']), 'F j, Y G:i') ?> <time> &ensp;
-                <a href="editreview.php?id=<?=$row['Review_Id']?>" class="review-post-edit">edit</a>
+                <a href="editreview.php?Review_Id=<?=$row['Review_Id']?>" class="review-post-edit">edit</a>
             </small>
         <br>
             <p class="review-post-content">
                 <?php if(strlen($row['Review_Content']) > 200) : ?>
                     <?=substr($row['Review_Content'], 0, 200)?>
-                    ...<a href="showreview.php?id=<?=$row['id']?>">Read full post</a>
+                    ...<a href="showreview.php?Review_Id=<?=$row['Review_Id']?>">Read full post</a>
                 <?php else: ?>
                     <?=$row['Review_Content'] ?>
                 <?php endif ?>
             </p>
-            <br><br><br>
+            <br>
         <?php endwhile; ?>
     </div>
     <?php include('footer.php'); ?>
