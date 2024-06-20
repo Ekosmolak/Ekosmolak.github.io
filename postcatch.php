@@ -3,46 +3,11 @@
     
     Name: Eric Kosmolak
     Date: May 23, 2024
-    Description: Web Dev 2 Assignment 3 Blog
+    Description: Web Dev 2 Final Project
 
 ****************/
 require('authenticate.php');
 require('connect.php');
-
-if($_POST && !empty($_POST['Review_Title']) && !empty($_POST['Review_Content']))
-{
-    // Sanitize user input
-    $title = filter_input(INPUT_POST, 'Review_Title', FILTER_SANITIZE_FULL_SPECIAL_CHARS);
-    $content = filter_input(INPUT_POST, 'Review_Content', FILTER_SANITIZE_FULL_SPECIAL_CHARS);
-    $client_id = filter_input(INPUT_POST, 'Client_Id', FILTER_SANITIZE_NUMBER_INT);
-    $type_fish = filter_input(INPUT_POST, 'Fish_Type', FILTER_SANITIZE_FULL_SPECIAL_CHARS);
-    $fish_id = filter_input(INPUT_POST, 'Fish_Id', FILTER_SANITIZE_NUMBER_INT);
-    $fish_pic = $new_image_path;
-
-    // Build the parameterized SQL query and bind to the above sanitized values
-    $query = "INSERT INTO catchlog (Fish_Id, Review_Content, Client_Id, Fish_Type, fish_pic) VALUES (:Review_Title, :Review_Content, :Client_Id, :Fish_Type, :image)";
-    $statement = $db->prepare($query);
-
-    // Bind values to parameters
-    $statement->bindValue(':Review_Title', $title);
-    $statement->bindValue(':Review_Content', $content);
-    $statement->bindValue(':Client_Id', $client_id);
-    $statement->bindValue(':Fish_Type', $type_fish);
-    $statement->bindValue(':Fish_Id', $fish_id);
-    $statement->bindValue(':fish_pic', $fish_pic);
-
-    // Execute the INSERT
-    if($statement->execute())
-    {
-        echo "Success";
-    }
-
-    $location = "catchlog.php";
-
-    // Change to the show.php?{$id}
-    header($location);
-    exit;
-}
 
 $clientsquery = "SELECT Client_Id, First_Name, Last_Name FROM client";
 $clientstatement = $db->prepare($clientsquery);
@@ -54,48 +19,53 @@ $fishstatement = $db->prepare($fishquery);
 $fishstatement->execute();
 $fishes = $fishstatement->fetchAll();
 
-function file_upload_path($original_filename, $upload_subfolder_name = 'uploads')
+if($_POST && !empty($_POST['Client_Id']) && !empty($_POST['Catch_Size']))
 {
-    $current_folder = dirname(__FILE__);
+    $image_upload_detected = isset($_FILES['image']) && ($_FILES['image']['error'] === 0);
 
-    $path_segments = [$current_folder, $upload_subfolder_name, basename($original_filename)];
+    // Sanitize user input
+    $fish_size = filter_input(INPUT_POST, 'Catch_Size', FILTER_SANITIZE_NUMBER_FLOAT);
+    $date_caught = filter_input(INPUT_POST, 'Date_Caught', FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+    $client_id = filter_input(INPUT_POST, 'Client_Id', FILTER_SANITIZE_NUMBER_INT);
+    $fish_id = filter_input(INPUT_POST, 'Fish_Id', FILTER_SANITIZE_NUMBER_INT);
 
-    return join(DIRECTORY_SEPARATOR, $path_segments);
-}
-
-function file_is_an_image($temporary_path, $new_path)
-{
-    $allowed_mime_types = ['image/gif', 'image/jpeg', 'image/png', 'application/pdf'];
-    $allowed_file_extensions = ['gif', 'jpg', 'jpeg', 'png', 'pdf'];
-    
-    $actual_file_extension = pathinfo($new_path, PATHINFO_EXTENSION);
-    //$actual_mime_type = getimagesize($temporary_path)['mime'];
-
-    if (in_array($actual_file_extension, ['gif', 'jpg', 'jpeg', 'png'])) {
-        // Handle images
-        $actual_mime_type = getimagesize($temporary_path)['mime'];
-    } else {
-        // Handle non-images (like PDFs)
-        $actual_mime_type = mime_content_type($temporary_path);
-    }
-
-    $file_extension_is_valid = in_array($actual_file_extension, $allowed_file_extensions);
-    $mime_type_is_valid = in_array($actual_mime_type, $allowed_mime_types);
-
-    return $file_extension_is_valid && $mime_type_is_valid;
-}
-
-$image_upload_detected = isset($_FILES['image']) && ($_FILES['image']['error'] === 0);
-$upload_error_detected = isset($_FILES['image']) && ($_FILES['image']['error'] > 0);
-
-if($image_upload_detected)
-{
-    $image_filename = $_FILES['image']['name'];
-    $temporary_image_path = $_FILES['image']['tmp_name'];
-    $new_image_path = file_upload_path($image_filename);
-    if(file_is_an_image($temporary_image_path, $new_image_path))
+    if($image_upload_detected)
     {
-        move_uploaded_file($temporary_image_path, $new_image_path);
+        $image_filename = $_FILES['image']['name'];
+        $temporary_image_path = $_FILES['image']['tmp_name'];
+        $upload_directory = 'uploads/';
+
+        if(!file_exists($upload_directory))
+        {
+            mkdir($upload_directory, 0777, true);
+        }
+
+        $photo_path = $upload_directory . $image_filename;
+
+        if(move_uploaded_file($temporary_image_path, $photo_path))
+        {
+            // Build the parameterized SQL query and bind to the above sanitized values
+            $query = "INSERT INTO catchlog (Fish_Id, Catch_Size, Client_Id, fish_pic, Date_Caught) VALUES (:Fish_Id, :Catch_Size, :Client_Id, :fish_pic, :Date_Caught)";
+            $statement = $db->prepare($query);
+
+            // Bind values to parameters
+            $statement->bindValue(':Catch_Size', $fish_size);
+            $statement->bindValue(':Date_Caught', $date_caught);
+            $statement->bindValue(':Client_Id', $client_id);
+            $statement->bindValue(':Fish_Id', $fish_id);
+            $statement->bindValue(':fish_pic', $photo_path);
+
+            // Execute the INSERT
+            if($statement->execute())
+            {
+                echo "Success";
+                $location = "catchlog.php";
+                header("Location: $location");
+                exit;
+            } else {
+                echo "Error executing SQL query";
+            }
+        }
     }
 }
 ?>
@@ -118,7 +88,7 @@ if($image_upload_detected)
             <h2>New Catch</h2>
 
             <div class="form-group">
-                <label for="client">Client</label>
+                <label for="client">Angler</label>
                 <br>
                 <select name="Client_Id" id="client" required>
                     <option value="" disabled selected>Select a Client</option>
@@ -132,8 +102,9 @@ if($image_upload_detected)
                 <label for="fish">Type of Fish</label>
                 <br>
                 <select name="Fish_Id" id="fish" required>
+                    <option value="" disabled selected>Select a Species</option>
                     <?php foreach ($fishes as $fish): ?>
-                        <option value="<?= $fish['Fish_Id']?>"><?= $fish['Fish_Type']?></option>
+                        <option name="Fish_Type" value="<?= $fish['Fish_Id']?>"><?= $fish['Fish_Type']?></option>
                         <?php endforeach; ?>
                 </select>
             </div>
@@ -141,13 +112,13 @@ if($image_upload_detected)
             <div class="form-group">
                 <label for="sizefish">Size of Fish</label>
                 <br>
-                <input type="number" name="Catch_Size" id="Catch_Size" min="5.00" max="60.00" required>
+                <input type="number" name="Catch_Size" id="Catch_Size" step="0.01" min="9.00" max="60.00" required>
             </div>
 
             <div class="form-group">
                 <label for="datecaught">Date Caught</label>
                 <br>
-                <input type="date" name="Date_Caught" id="Date_Caught" min="2024-01-01" max="2024-12-31" required>
+                <input type="date" name="Date_Caught" id="Date_Caught" min="2024-01-01" max="<?=date("Y-m-d")?>" required>
             </div>
 
             <div class="form-group">
@@ -155,15 +126,6 @@ if($image_upload_detected)
                 <br>
                 <input type="file" name="image" id="image">
             </div>
-
-            <?php if($upload_error_detected): ?>
-                <p>Error Number: <?= $_FILES['image']['error'] ?></p>
-            <?php elseif ($image_upload_detected): ?>
-                <p>Client-Side Filename <?= $_FILES['image']['name'] ?></p>
-                <p>Client-Side Filename <?= $_FILES['image']['type'] ?></p>
-                <p>Client-Side Filename <?= $_FILES['image']['size'] ?></p>
-                <p>Client-Side Filename <?= $_FILES['image']['tmp_name'] ?></p>
-            <?php endif; ?>
             <br>
 
             <button type="submit" name="submit" class="button-primary">Submit Catch</button>

@@ -36,28 +36,30 @@ $statement->execute();
     <?php include('nav.php'); ?>
 
     <div id="wrapper">
-        <main>
-            <h1>Here are some of our clients latest catches!</h2>
-            <h2>Want to add your own? <a href="postcatch.php">Click Here</a></h2>
-        </main>
+            <main class="catchlogtitle">
+                <h1>Here are some of our clients latest catches!</h2>
+                <h2>Want to add your own catch? <a href="postcatch.php">Click Here</a></h2>
+            </main>
 
-        <?php if($statement->rowCount() == 0): ?>
-            <div class="text-center py-1">
-                <h2>No Catches Yet!</h2>
-            </div>
-        <?php exit; endif; ?>
+        <div class="catchlog">
+            <?php if($statement->rowCount() == 0): ?>
+                <div class="text-center-py-1">
+                    <h2>No Catches Yet!</h2>
+                </div>
+            <?php exit; endif; ?>
 
-        <?php while($row = $statement->fetch()): ?>
-            <h2 class="catchlog-post-title"><?=$row['Fish_Type']?></h3>
-            <img src="<?=$row['fish_pic'] ?>" alt="Clients Fish" width="400px" height="200px">
-            <h2>Length <?=$row['Catch_Size'] ?>", Caught By <?=$row['First_Name']?> <?=$row['Last_Name']?></h2>
+            <?php while($row = $statement->fetch()): ?>
+                <h2 class="catchlog-post-title"><?=$row['Fish_Type']?></h2>
+                <img src="<?=$row['fish_pic'] ?>" alt="Clients Fish" width="450px" height="225px">
+                <h3>Length <?=$row['Catch_Size'] ?>", Caught By <?=$row['First_Name']?> <?=$row['Last_Name']?></h3>
 
-            <small class="catchlog-post-date">
-                Caught on <time><?=date_format(date_create($row['Date_Caught']), 'F j, Y') ?></time> &ensp;
-                <!--<a href="editcatch.php?id=<?=$row['Catch_Id']?>" class="catch-post-edit">edit</a> -->
-            </small>
-        <br><br>
-        <?php endwhile; ?>
+                <small class="catchlog-post-date">
+                    Caught on <time><?=date_format(date_create($row['Date_Caught']), 'F j, Y') ?></time> &ensp;
+                    <a href="editcatch.php?Catch_Id=<?=$row['Catch_Id']?>" class="catch-post-edit">Edit</a>
+                </small>
+            <br><br>
+            <?php endwhile; ?>
+        </div>
     </div>
     <?php include('footer.php'); ?>
 </body>

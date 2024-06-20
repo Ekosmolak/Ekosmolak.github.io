@@ -5,6 +5,10 @@
     Description: Web Dev 2 Assignment 3 Blog
 
 ****************/
+@import url('https://fonts.googleapis.com/css2?family=Lilita+One&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Holtwood+One+SC&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Alfa+Slab+One&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Anton&display=swap');
 
 /*******w******** 
     index.php / General Page 
@@ -23,34 +27,62 @@ body {
 }
 
 #wrapper {
-    /* background-color: #ffffff; */
     width:800px;
     margin: 0px auto;
 }
 
-#wrapper h3{
-
+main h1 {
+    font-family: "Alfa Slab One", serif;
+    text-align: center;
+    margin-top: 30px;
+    font-size: 35px;
 }
 
-#wrapper small, p {
-
+.index h2{
+    font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    text-align: left;
+    font-weight: 800;
+    font-size: 30px;
+    padding-left: 13px;
+    padding-bottom: 30px;
 }
 
-#wrapper h1 {
-
+.index a {
+    text-decoration: none;
 }
 
-#wrapper h3 :hover {
+.index h3 {
+    font-family:"Alfa Slab One", serif;
+    font-size: 22px;
+    font-weight: 500;
+    color: #5a643a;
+    margin-bottom: -17px;
 }
 
-#wrapper h3 :visited {
+.index h3 :visited {
+    color: #222222;
 }
 
-.container-py-1 h2 {
+.index h3 :hover {
+    color: #5a643a;
 }
 
-.blog-post-content {
+.index h4 {
+    margin-bottom: 2px;
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
 }
+
+.index small {
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+}
+
+.index p {
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    font-size: large;
+    font-weight: 500;
+}
+
+
 /*******w******** 
     header.php
 ****************/
@@ -64,68 +96,180 @@ header {
     nav.php
 ****************/
 nav {
-    display: flex;
-    justify-content: center;
     text-align: center;
     background-image: url("images/navbarpic.png");  /* AI generated from Microsoft AI Image Generator */
     background-repeat: no-repeat;
     background-position: center;
+    background-blend-mode: darken;
     width:100%;
     height:60px;
 }
 
-ul {
+nav ul {
     list-style-type: none;
-    margin:auto;
-    width: 800px;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    text-align: center;
+    display: flex;
 }
 
-li {
-    float: left;
-    width: 133px;
-
+nav li {
+    flex: 1;
+    text-align: center;
 }
 
-li a {
+nav li a {
     display: block;
     color: #222222;
-    padding: 8px;
-    box-sizing: border-box;
-    border: 2px solid grey;
+    padding: 0;
+    text-decoration: none;
     text-align: center; 
-
-}
-
-.container li :visited {
-    color: #222222;
+    font-family: "Lilita One", sans-serif;
+    font-size: 20px;
+    line-height: 60px;
 }
 
 .container li :hover {
-    /* background-color: #222222;
-    color: #eeeeee; */
+    color: #5a643a;
 }
 
+/*******w******** 
+    fish.php
+****************/
+.container-py2 h1{
+    font-family: "Alfa Slab One", serif;
+    text-align: center;
+    margin-top: 30px;
+    font-size: 40px;
+    margin-bottom: 50px;
+    color: #222222;
+}
+
+.fish h3 {
+    font-family:"Alfa Slab One", serif;
+    font-size: 22px;
+    font-weight: 500;
+    color: #5a643a;
+
+}
+
+/*******w******** 
+    catchlog.php
+****************/
+.catchlogtitle a {
+    text-decoration: none;
+    color: #5a643a;
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    padding-left: 3px;
+    margin-bottom: 40px;
+    font-weight: 800;
+}
+
+.catchlogtitle h2 :hover {
+    color: #222222;
+}
+
+.catchlogtitle h2, h2 a {
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    padding-left: 3px;
+    margin-bottom: 50px;
+    font-weight: 800;
+}
+
+.catchlog {
+    margin-left: 5px;
+}
+
+.catchlog h2 {
+    font-family: "Alfa Slab One", serif;
+    font-weight: 500;
+    font-size: 27px;
+    color: #5a643a;
+}
+
+.catchlog h3 {
+    font-family: "Alfa Slab One", serif;
+    font-size: 20px;
+    font-weight: 400;
+    color: #5a643a;
+    margin-bottom: 2px;
+}
+
+.catchlog small, .catchlog a{
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    color: #222222;
+    font-size: 16px;
+    font-weight: 600;
+}
+
+.catchlog a {
+    color: #5a643a;
+    text-decoration: none;
+}
+
+.catchlog a:hover {
+    color: #222222;
+}
+
+/*******w******** 
+    masteranglers.php
+****************/
+.mastertitle h1{
+    padding-bottom: 30px;
+}
+
+/*******w******** 
+    reviews.php
+****************/
+.review-title h2 {
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    margin-bottom: 50px;
+    font-weight: 800;
+    text-align: center;
+}
+
+.review-title a {
+    text-decoration: none;
+    color: #5a643a;
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    padding-left: 3px;
+    margin-bottom: 40px;
+    font-weight: 800;
+}
+
+.review-title h2 :hover {
+    color: #222222;
+}
+
+.review-post-date small, .review-post-date a{
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    color: #222222;
+    font-size: 16px;
+    font-weight: 600;
+}
+
+.review-post-date a {
+    color: #5a643a;
+    text-decoration: none;
+}
+
+.review-post-date a:hover {
+    color: #222222;
+}
 /*******w******** 
     footer.php
 ****************/
 footer {
-    /* text-align: center;
-    font-weight: bold;
+    text-align: center;
+    font-family: "Holtwood One SC", serif;
+    font-weight:400;
+    font-size: 25px;
     padding: 10px;
-    background-color: #eeeeee;
-    color: #222222; */
+    background-color: #C2B280;
+    color: #222222;
 }
 
 /*******w******** 
     edit.php & post.php
 ****************/
-form h2 {
-
-}
-
-#form-group div, input, textarea, label {
-
-}
-
-button {
-}

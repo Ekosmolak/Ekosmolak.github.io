@@ -26,10 +26,7 @@ if($_POST && !empty($_POST['Review_Title']) && !empty($_POST['Review_Content']))
     $statement->bindValue(':Client_Id', $client_id);
 
     // Execute the INSERT
-    if($statement->execute())
-    {
-        echo "Success";
-    }
+    $statement->execute();
 
     $location = "reviews.php";
 

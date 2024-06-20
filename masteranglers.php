@@ -35,26 +35,28 @@ $statement->execute();
     <?php include('nav.php'); ?>
 
     <div id="wrapper">
-        <main>
+        <main class="mastertitle">
+        <h1>The Master Angler Club!</h1>
         </main>
 
-        <h1>The Master Angler Club!</h2>
-        <?php if($statement->rowCount() == 0): ?>
-            <div class="text-center py-1">
-                <h2>No Catches Yet!</h2>
-            </div>
-        <?php exit; endif; ?>
+        <div class="catchlog">
+            <?php if($statement->rowCount() == 0): ?>
+                <div class="text-center py-1">
+                    <h2>No Catches Yet!</h2>
+                </div>
+            <?php exit; endif; ?>
 
-        <?php while($row = $statement->fetch()): ?>
-            <h2 class="catchlog-post-title"><?=$row['Fish_Type']?></h3>
-            <img src="<?=$row['fish_pic'] ?>" alt="Clients Fish" width="400px" height="200px">
-            <h3>Length <?=$row['Catch_Size'] ?>", Caught By <?=$row['First_Name']?> <?=$row['Last_Name']?></h2>
+            <?php while($row = $statement->fetch()): ?>
+                <h2 class="catchlog-post-title"><?=$row['Fish_Type']?></h3>
+                <img src="<?=$row['fish_pic'] ?>" alt="Clients Fish" width="450px" height="225px">
+                <h3>Length <?=$row['Catch_Size'] ?>", Caught By <?=$row['First_Name']?> <?=$row['Last_Name']?></h2>
 
-            <small class="catchlog-post-date">
-                Caught on <time><?=date_format(date_create($row['Date_Caught']), 'F j, Y') ?></time> &ensp;
-            </small>
-        <br><br>
-        <?php endwhile; ?>
+                <small class="catchlog-post-date">
+                    Caught on <time><?=date_format(date_create($row['Date_Caught']), 'F j, Y') ?></time> &ensp;
+                </small>
+            <br><br>
+            <?php endwhile; ?>
+        </div>
     </div>
     <?php include('footer.php'); ?>
 </body>

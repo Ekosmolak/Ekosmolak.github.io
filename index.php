@@ -40,38 +40,39 @@ $statement->execute();
         <main>
         <h1>Vist Lake of the Woods Best Fishing Lodge!</h1>
         </main>
+        <div class="index">
+            <h2>Here are some of our latest reviews!</h2>
+            <?php if($statement->rowCount() == 0): ?>
+                <div class="text-center py-1">
+                    <p>No Reviews Yet!</p>
+                </div>
+            <?php exit; endif; ?>
 
-        <h2>Here are some of our latest reviews!</h2>
-        <?php if($statement->rowCount() == 0): ?>
-            <div class="text-center py-1">
-                <p>No Reviews Yet!</p>
-            </div>
-        <?php exit; endif; ?>
+            <?php while($row = $statement->fetch()): ?>
+                <h3 class="review-post-title">
+                    <a href="showreview.php?Review_Id=<?=$row['Review_Id']?>"><?=$row['Review_Title']?></a>
+                </h3>
 
-        <?php while($row = $statement->fetch()): ?>
-            <h3 class="review-post-title">
-                <a href="showreview.php?Review_Id=<?=$row['Review_Id']?>"><?=$row['Review_Title']?></a>
-            </h3>
+                <h4 class="review-post-client">
+                    Review by <?=$row['First_Name']?> <?=$row['Last_Name']?>
+                </h4>
 
-            <h4 class="review-post-client">
-                Review by <?=$row['First_Name']?> <?=$row['Last_Name']?>
-            </h4>
-
-            <small class="review-post-date">
-                Posted on <time datetime="<?=$row['date_posted']?>"><?=
-                date_format(date_create($row['date_posted']), 'F j, Y G:i') ?> <time> &ensp;
-            </small>
-        <br>
-            <p class="review-post-content">
-                <?php if(strlen($row['Review_Content']) > 200) : ?>
-                    <?=substr($row['Review_Content'], 0, 200)?>
-                    ...<a href="showreview.php?Review_Id=<?=$row['id']?>">Read full post</a>
-                <?php else: ?>
-                    <?=$row['Review_Content'] ?>
-                <?php endif ?>
-            </p>
-            <br><br><br>
-        <?php endwhile; ?>
+                <small class="review-post-date">
+                    Posted on <time datetime="<?=$row['date_posted']?>"><?=
+                    date_format(date_create($row['date_posted']), 'F j, Y') ?> <time> &ensp;
+                </small>
+            <br>
+                <p class="review-post-content">
+                    <?php if(strlen($row['Review_Content']) > 200) : ?>
+                        <?=substr($row['Review_Content'], 0, 200)?>
+                        ...<a href="showreview.php?Review_Id=<?=$row['id']?>">Read full post</a>
+                    <?php else: ?>
+                        <?=$row['Review_Content'] ?>
+                    <?php endif ?>
+                </p>
+                <br><br>
+            <?php endwhile; ?>
+        </div>
     </div>
     <?php include('footer.php'); ?>
 </body>
