@@ -2,7 +2,7 @@
     
     Name: Eric Kosmolak
     Date: May 23, 2024
-    Description: Web Dev 2 Assignment 3 Blog
+    Description: Web Dev 2 Final Project
 
 ****************/
 @import url('https://fonts.googleapis.com/css2?family=Lilita+One&display=swap');
@@ -213,6 +213,36 @@ nav li a {
 }
 
 /*******w******** 
+    postcatch.php & editcatch.php
+****************/
+.postcatch-title h1 {
+    font-size: 35px;
+    letter-spacing: 1.4px;
+    padding-bottom: 17px;
+}
+
+.postcatch ul {
+    list-style: none;
+    margin-right: 20px;
+}
+
+.postcatch li {
+    margin-bottom: 10px;
+}
+
+.postcatch button {
+    text-align: center;
+}
+
+.postcatch label {
+    display: block;
+    padding-bottom: 10px;
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    font-size: 20px;
+    font-weight: 600;
+}
+
+/*******w******** 
     masteranglers.php
 ****************/
 .mastertitle h1{
@@ -259,6 +289,71 @@ nav li a {
 }
 
 /*******w******** 
+    showreview.php
+****************/
+.showreviewtitle h2 {
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    padding-top: 20px;
+    font-size: 30px;
+}
+
+.showreview small {
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    color: #222222;
+    font-size: 16px;
+    font-weight: 600;
+}
+
+.showreview p {
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    font-size: large;
+    font-weight: 500;
+}
+
+/*******w******** 
+    editreview.php & postreview.php
+****************/
+.postreview h1 {
+    font-size: 35px;
+    letter-spacing: 1.4px;
+    padding-bottom: 17px;
+}
+
+#postreview ul {
+    list-style: none;
+    margin-right: 20px;
+}
+
+#postreview li {
+    margin-bottom: 20px;
+}
+
+#postreview button {
+    text-align: center;
+}
+
+#title input {
+    width: 300px;
+}
+
+.reviewbutton input {
+    width: 110px;
+}
+
+#postreview textarea {
+    width: 400px;
+}
+
+#postreview label {
+    display: block;
+    padding-bottom: 10px;
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    font-size: 20px;
+    font-weight: 600;
+}
+
+
+/*******w******** 
     bookstay.php
 ****************/
 .staytitle h1 {
@@ -295,8 +390,6 @@ nav li a {
     font-size: 20px;
     font-weight: 600;
 }
-
-#bookstay input {}
 
 /*******w******** 
     footer.php

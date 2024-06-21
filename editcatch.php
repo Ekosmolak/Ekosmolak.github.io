@@ -1,12 +1,12 @@
 <?php
 
-/*******w******** 
+// *******w******** 
     
-    Name: Eric Kosmolak
-    Date: May 23, 2024
-    Description: Web Dev 2 Final Project
+//     Name: Eric Kosmolak
+//     Date: May 23, 2024
+//     Description: Web Dev 2 Final Project
 
-****************/
+// ****************/
 require('authenticate.php');
 require('connect.php');
 
@@ -75,18 +75,6 @@ if($_POST)
                 $statement->bindValue(':Catch_Id', $catch_id);
                 $statement->bindValue(':fish_pic', $image_path);
 
-                // Debugging: Output the query and bound values
-                echo "<pre>$query\n";
-                print_r([
-                    ':Catch_Size' => $fish_size,
-                    ':Date_Caught' => $date_caught,
-                    ':Client_Id' => $client_id,
-                    ':Fish_Id' => $fish_id,
-                    ':Catch_Id' => $catch_id,
-                    ':fish_pic' => $image_path
-                ]);
-                echo "</pre>";
-
                 $statement->execute();
 
                 $location = "catchlog.php";
@@ -104,18 +92,6 @@ if($_POST)
             $statement->bindValue(':Client_Id', $client_id);
             $statement->bindValue(':Fish_Id', $fish_id);
             $statement->bindValue(':Catch_Id', $catch_id);
-
-            // Debugging: Output the query and bound values
-            echo "<pre>$query\n";
-            print_r([
-                ':Catch_Size' => $fish_size,
-                ':Date_Caught' => $date_caught,
-                ':Client_Id' => $client_id,
-                ':Fish_Id' => $fish_id,
-                ':Catch_Id' => $catch_id
-            ]);
-            echo "</pre>";
-
 
             $statement->execute();
 
@@ -155,60 +131,68 @@ if($_POST)
 
     <?php include('nav.php') ?>
     <div id="wrapper">
-    <main class="container py-1">
+    <main class="postcatch">
+        <main class="postcatch-title">
+            <h1>Edit your catch!</h1>
+        </main>
 
-    <form action="editcatch.php" method="POST" enctype="multipart/form-data">
-        <h2>Edit your catch!</h2>
+        <form action="catchlog.php" method="POST" enctype="multipart/form-data">
+            <div class="postcatch">
+            <ul>
+                <li>
+                    <input type="hidden" name="Catch_Id" value="<?=$catch['Catch_Id']?>">
+                    <div class="form-group">
+                        <label for="Client_Id">Angler</label>
+                        <select name="Client_Id" id="client" required>
+                            <option value="<?= $catch['Client_Id']?>"><?= ($catch['First_Name'] . ' ' . $catch['Last_Name']) ?></option>
+                        </select>
+                    </div>
+                </li>
+                <li>
+                    <div class="post-group">
+                        <label for="fish">Type of Fish</label>
+                        <select name="Fish_Id" id="fish" required>
+                            <option name="Fish_Type" value="<?= $catch['Fish_Id']?>"><?= $catch['Fish_Type']?></option>
+                            <?php foreach ($fishes as $fish): ?>
+                                    <option name="Fish_Type" value="<?= $fish['Fish_Id']?>"><?= $fish['Fish_Type']?></option>
+                            <?php endforeach; ?>
+                        </select>
+                    </div>
+                </li>
+                <li>
+                    <div class="post-group">
+                        <label for="sizefish">Size of Fish</label>
+                        <input type="number" name="Catch_Size" value="<?=$catch['Catch_Size']?>" id="Catch_Size" step="0.01" min="9.00" max="60.00" required>
+                    </div>
+                </li>
+                <li>
+                    <div class="post-group">
+                        <label for="datecaught">Date Caught</label>
+                        <input type="date" name="Date_Caught" value="<?=$catch['Date_Caught']?>" id="Date_Caught" min="2024-01-01" max="<?=date("Y-m-d")?>" required>
+                    </div>
+                </li>
+                <li>
+                    <div class="post-group">
+                        <label for="image">Image:</label>
+                        <input type="file" name="image" id="image">
+                    </div>
+                    <br>
+                </li>
+                <li>
+                    <input type="hidden" name="command" value="UpdateCatch">
+                    <input type="submit" id="edit-input" name="button-primary" value="Update Catch"> 
+                </li>
+                </form>
 
-        <input type="hidden" name="Catch_Id" value="<?=$catch['Catch_Id']?>">
-
-        <div class="form-group">
-            <label for="Client_Id">Angler</label>
-            <br>
-            <select name="Client_Id" id="client" required>
-                <option value="<?= $catch['Client_Id']?>"><?= ($catch['First_Name'] . ' ' . $catch['Last_Name']) ?></option>
-            </select>
-        </div>
-
-        <div class="form-group">
-            <label for="fish">Type of Fish</label>
-            <br>
-            <select name="Fish_Id" id="fish" required>
-                <option name="Fish_Type" value="<?= $catch['Fish_Id']?>"><?= $catch['Fish_Type']?></option>
-                <?php foreach ($fishes as $fish): ?>
-                        <option name="Fish_Type" value="<?= $fish['Fish_Id']?>"><?= $fish['Fish_Type']?></option>
-                <?php endforeach; ?>
-            </select>
-        </div>
-        
-        <div class="form-group">
-            <label for="sizefish">Size of Fish</label>
-            <br>
-            <input type="number" name="Catch_Size" value="<?=$catch['Catch_Size']?>" id="Catch_Size" step="0.01" min="9.00" max="60.00" required>
-        </div>
-
-        <div class="form-group">
-            <label for="datecaught">Date Caught</label>
-            <br>
-            <input type="date" name="Date_Caught" value="<?=$catch['Date_Caught']?>" id="Date_Caught" min="2024-01-01" max="<?=date("Y-m-d")?>" required>
-        </div>
-
-        <div class="form-group">
-            <label for="image">Image:</label>
-            <input type="file" name="image" id="image">
-        </div>
-        <br>
-
-        <input type="hidden" name="command" value="UpdateCatch">
-        <input type="submit" id="edit-input" name="button-primary" value="Update Catch"> 
-
-        </form>
-
-        <form action="editcatch.php" method="POST">
-            <input type="hidden" id="edit-input" name="Catch_Id" value="<?=$catch['Catch_Id']?>">
-            <input type="hidden" name="command" value="Delete">
-            <input type="submit" name="button-primary-outline" value="Delete" onclick="return confirm('Are you sure you want to delete this post?')">
-        </form>
+                <form action="editcatch.php" method="POST">
+                </li>
+                    <input type="hidden" id="edit-input" name="Catch_Id" value="<?=$catch['Catch_Id']?>">
+                    <input type="hidden" name="command" value="Delete">
+                    <input type="submit" name="button-primary-outline" value="Delete" onclick="return confirm('Are you sure you want to delete this post?')">
+                </li>
+                </form>
+            </ul>
+            </div>
     </main>
     </div>
     <?php include('footer.php'); ?>

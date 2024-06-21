@@ -1,6 +1,6 @@
 <?php
 
-// /*******w******** 
+// *******w******** 
     
 //     Name: Eric Kosmolak
 //     Date: May 23, 2024
@@ -42,13 +42,15 @@ if(isset($_GET['Review_Id']))
     <?php include('nav.php'); ?>
 
     <div id="wrapper">
-    <main class="container py-1">
+    <main class="showreview">
     <?php if($id): ?>
-        <h1 class="review-post-title"><?=$review['Review_Title']?></h1>
+        <main class="showreviewtitle">
+            <h2 class="reviewshowtitle"><?=$review['Review_Title']?></h2>
+        </main>
         <small class="review-post-date">
             Posted on
             <time><?=date_format(date_create($review['date_posted']), 'F j, Y') ?><time>&ensp; 
-            <a href="editreview.php?Review_Id=<?=$review['Review_Id']?>" class="review-post-edit">edit</a>
+            <a href="editreview.php?Review_Id=<?=$review['Review_Id']?>" class="review-post-edit">Edit</a>
         </small>
         <p class="review-post-content">
             <?=$review['Review_Content']?>

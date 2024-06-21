@@ -1,13 +1,14 @@
 <?php
-/*******w******** 
+// *******w******** 
     
-    Name: Eric Kosmolak
-    Date: May 23, 2024
-    Description: Web Dev 2 Assignment 3 Blog
+//     Name: Eric Kosmolak
+//     Date: May 23, 2024
+//     Description: Web Dev 2 Final Project
 
-****************/
+// ****************/
 require('authenticate.php');
 require('connect.php');
+$review = null;
 
 if($_POST && !empty($_POST['Review_Title']) && !empty($_POST['Review_Content']))
 {
@@ -27,11 +28,11 @@ if($_POST && !empty($_POST['Review_Title']) && !empty($_POST['Review_Content']))
 
     // Execute the INSERT
     $statement->execute();
-
+    $review = $statement->fetch();
     $location = "reviews.php";
 
     // Change to the show.php?{$id}
-    header($location);
+    header("Location: $location");
     exit;
 }
 
@@ -55,35 +56,42 @@ $clients = $clientstatement->fetchAll();
     <?php include('header.php'); ?>
     <?php include('nav.php'); ?>
     <div id="wrapper">
-    <main class="container py-1" id="create-post">
-        <form action="postreview.php" method="POST">
-            <h2>New Review</h2>
-
-            <div class="form-group">
-                <label for="client">Client</label>
-                <br>
-                <select name="Client_Id" id="client" required>
-                    <option value="" disabled selected>Select a client</option>
-                    <?php foreach ($clients as $client): ?>
-                        <option value="<?= $client['Client_Id']?>"><?= ($client['First_Name'] . ' ' . $client['Last_Name']) ?></option>
-                        <?php endforeach; ?>
-                </select>
-            </div>
-
-            <div class="form-group">
-                <label for="title">Title</label>
-                <br>
-                <input type="text" name="Review_Title" id="title" minlength="1" maxlength="40" required>
-            </div>
-
-            <div class="form-group">
-                <label for="content">Review Content</label>
-                <br>
-                <textarea name="Review_Content" id="content" cols="30" rows="10" minlength="1" maxlength="400" required></textarea>
-            </div>
-
-            <button type="submit" class="button-primary">Submit Review</button>
-        </form>
+    <main class="editview" id="create-post">
+        <div id="postreview">
+            <main class="postreview">
+                <h1>New Review</h1>
+            </main>
+            <form action="postreview.php" method="POST">
+                <ul>
+                    <li>
+                        <div class="post-group">
+                            <label for="client">Client</label>
+                            <select name="Client_Id" id="client" required>
+                                <option value="" disabled selected>Select a client</option>
+                                <?php foreach ($clients as $client): ?>
+                                    <option value="<?= $client['Client_Id']?>"><?= ($client['First_Name'] . ' ' . $client['Last_Name']) ?></option>
+                                    <?php endforeach; ?>
+                            </select>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="post-group">
+                            <label for="title">Title</label>
+                            <input type="text" name="Review_Title" id="title" minlength="1" maxlength="40" required>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="post-group">
+                            <label for="content">Review Content</label>
+                            <textarea name="Review_Content" id="content" cols="30" rows="10" minlength="1" maxlength="400" required></textarea>
+                        </div>
+                    </li>
+                    <li>
+                        <button type="submit" class="button-primary">Submit Review</button>
+                    </li>
+                </ul>
+            </form>
+        </div>
     </main>
     </div>
     <?php include('footer.php'); ?>

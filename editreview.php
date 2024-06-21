@@ -1,12 +1,12 @@
 <?php
 
-/*******w******** 
+// *******w******** 
     
-    Name: Eric Kosmolak
-    Date: May 23, 2024
-    Description: Web Dev 2 Final Project
+//     Name: Eric Kosmolak
+//     Date: May 23, 2024
+//     Description: Web Dev 2 Final Project
 
-****************/
+// ****************/
 require('authenticate.php');
 require('connect.php');
 
@@ -88,39 +88,45 @@ if($_POST)
 
     <?php include('nav.php') ?>
     <div id="wrapper">
-    <main class="container py-1">
+    <main class="editreview">
+        <div id="postreview">
+            <main class="postreview">
+                <h1>Edit this review!</h1>
+            </main>
 
-    <?php if($review): ?>
-    <form action="editreview.php?Review_Id=<?=$review['Review_Id']?>" method="POST">
-        <h2>Edit this review!</h2>
-
-        <input type="hidden" name="Review_Id" value="<?=$review['Review_Id']?>">
-
-        <div class="form-group">
-            <label for="title">Review Title</label>
-            <br>
-            <input type="text" name="Review_Title" id="title" value="<?=$review['Review_Title']?>" minlength="1" required>
-        </div>
-
-        <div class="form-group">
-            <label for="content">Review Content</label>
-            <br>
-            <textarea name="Review_Content" id="content" cols="30" rows="10" minlength="1" required> <?=$review['Review_Content']?></textarea>
-        </div>
-
-        <input type="hidden" name="command" value="UpdateReview">
-        <input type="submit" id="edit-input" name="button-primary" value="Update Review"> 
-
-        </form>
-
-        <form action="editreview.php?Review_Id=<?=$review['Review_Id']?>" method="POST">
-            <input type="hidden" id="edit-input" name="Review_Id" value="<?=$review['Review_Id']?>">
-            <input type="hidden" name="command" value="Delete">
-            <input type="submit" name="button-primary-outline" value="Delete" onclick="return confirm('Are you sure you want to delete this post?')">
-        </form>
-        <?php else: ?>
-            <p>No reviews found.</p>
+        <?php if($review): ?>
+        <form action="showreview.php?Review_Id=<?=$review['Review_Id']?>" method="POST">
+                <input type="hidden" name="Review_Id" value="<?=$review['Review_Id']?>">
+                <ul>
+                    <li>
+                        <div class="form-group">
+                            <label for="title">Review Title</label>
+                            <input type="text" name="Review_Title" id="title" value="<?=$review['Review_Title']?>" minlength="1" required>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="form-group">
+                            <label for="content">Review Content</label>
+                            <textarea name="Review_Content" id="content" cols="30" rows="10" minlength="1" required> <?=$review['Review_Content']?></textarea>
+                        </div>
+                    </li>
+                    <li class="reviewbutton">
+                        <input type="hidden" name="command" value="UpdateReview">
+                        <input type="submit" class="reviewbutton" name="button-primary" value="Update Review"> 
+                    </li>
+                </form>
+                    <li class="reviewbutton">
+                        <form action="editreview.php?Review_Id=<?=$review['Review_Id']?>" method="POST">
+                            <input type="hidden" id="edit-input" name="Review_Id" value="<?=$review['Review_Id']?>">
+                            <input type="hidden" name="command" value="Delete">
+                            <input type="submit" class="reviewbutton" name="button-primary-outline" value="Delete" onclick="return confirm('Are you sure you want to delete this post?')">
+                        </form>
+                    </li>
+                </ul>
+            <?php else: ?>
+                <p>No reviews found.</p>
             <?php endif ?>
+        </div>
     </main>
     </div>
     <?php include('footer.php'); ?>

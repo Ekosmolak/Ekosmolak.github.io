@@ -1,13 +1,12 @@
 <?php
 
-// /*******w******** 
+// *******w******** 
     
 //     Name: Eric Kosmolak
 //     Date: May 23, 2024
 //     Description: Web Dev 2 Final Project
 
 // ****************/
-
 require('connect.php');
 
 // SQL is written as a String.
