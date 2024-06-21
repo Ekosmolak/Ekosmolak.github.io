@@ -257,19 +257,57 @@ nav li a {
 .review-post-date a:hover {
     color: #222222;
 }
+
+/*******w******** 
+    bookstay.php
+****************/
+.staytitle h1 {
+    font-size: 35px;
+    letter-spacing: 1.4px;
+    padding-bottom: 17px;
+}
+
+.staytitle p {
+    font-size: 19px;
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    padding-bottom: 25px;
+    text-align: center;
+    
+}
+
+#bookstay ul {
+    list-style: none;
+    margin-right: 20px;
+}
+
+#bookstay li {
+    margin-bottom: 10px;
+}
+
+.wrapper button {
+    text-align: center;
+}
+
+#bookstay label {
+    display: block;
+    margin-bottom: -5px;
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    font-size: 20px;
+    font-weight: 600;
+}
+
+#bookstay input {}
+
 /*******w******** 
     footer.php
 ****************/
 footer {
     text-align: center;
     font-family: "Holtwood One SC", serif;
-    font-weight:400;
+    font-weight:200;
     font-size: 25px;
+    margin-top: 30px;
     padding: 10px;
     background-color: #C2B280;
     color: #222222;
 }
-
-/*******w******** 
-    edit.php & post.php
-****************/
