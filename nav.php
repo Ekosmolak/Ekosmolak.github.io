@@ -17,5 +17,6 @@
         <li><a href="masteranglers.php" class="button-primary-outline">Master Anglers</a></li>
         <li><a href="reviews.php" class="button-primary-outline">Reviews</a></li>
         <li><a href="bookstay.php" class="button-primary-outline">Book a Stay</a></li>
+        <li><a href="login.php"></a>Login</li>
     </ul>
 </nav>  
