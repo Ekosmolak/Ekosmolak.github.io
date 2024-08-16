@@ -43,7 +43,7 @@ $fishes =$statement->fetchAll();
                 <div id="fish-post">
                     <h3><?= $fish['Fish_Type'] ?></h3>
                     <h4>Master Angler Size: <?= $fish['Regulation_Size'] ?></h4>
-                    <img src="<?=$fish['fish_pic']?>" alt="<?= $fish['Fish_Type'] ?>" height="200px" width="400px">
+                    <img src="<?=$fish['fish_pic']?>" alt="<?= $fish['Fish_Type'] ?>">
                     <p><?=$fish['Fish_Description']?></p>
                 </div>
             <?php endforeach; ?>

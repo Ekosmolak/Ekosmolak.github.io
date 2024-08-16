@@ -10,6 +10,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Alfa+Slab+One&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Anton&display=swap');
 
+
 /*******w******** 
     index.php / General Page 
 ****************/
@@ -18,34 +19,38 @@ html {
     display: flex;
     justify-content: center;
     align-items: center;
-    top: 0px;
+    min-height: 100vh;
 }
 
 body {
-    height: 100%;
-    width: 80%;
+    width: 90%;
+    max-width: 1000px;
     background-color: #C2B280;
+    margin: 0;
+    padding: 0;
 }
 
 #wrapper {
-    width:85%;
-    margin: 0px auto;
+    width: 100%;
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 0 1rem;
 }
 
 main h1 {
     font-family: "Alfa Slab One", serif;
     text-align: center;
-    margin-top: 30px;
-    font-size: 35px;
+    margin-top: 2rem;
+    font-size: 2rem;
 }
 
 .index h2{
-    font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
     text-align: left;
     font-weight: 800;
-    font-size: 30px;
-    padding-left: 13px;
-    padding-bottom: 30px;
+    font-size: 1.875rem;
+    padding-left: 1rem;
+    padding-bottom: 2rem;
 }
 
 .index a {
@@ -53,11 +58,11 @@ main h1 {
 }
 
 .index h3 {
-    font-family:"Alfa Slab One", serif;
-    font-size: 22px;
+    font-family: "Alfa Slab One", serif;
+    font-size: 1.375rem;
     font-weight: 500;
     color: #222222;
-    margin-bottom: -17px;
+    margin-bottom: -1rem;
 }
 
 .index h3 a {
@@ -73,7 +78,7 @@ main h1 {
 }
 
 .index h4 {
-    margin-bottom: 2px;
+    margin-bottom: 0.125rem;
     font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
 }
 
@@ -83,7 +88,7 @@ main h1 {
 
 .index p {
     font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
-    font-size: large;
+    font-size: 1.125rem;
     font-weight: 500;
 }
 
@@ -94,29 +99,21 @@ main h1 {
 header {
     display: flex;
     justify-content: center;
-    height: 340px;
-}
-
-.text-center img {
-    width: 700px;
-    height: 350px;
+    height: 15rem;
+    width: 100%;
 }
 
 /*******w******** 
     nav.php
 ****************/
-.mobilenavbar {
-    display: none;
-}
-
 nav {
     text-align: center;
-    background-image: url("images/navbarpic.png");  /* AI generated from Microsoft AI Image Generator */
+    background-image: url("images/navbarpic.png");
     background-repeat: no-repeat;
     background-position: center;
     background-blend-mode: darken;
-    width:100%;
-    height:60px;
+    width: 100%;
+    height: 3.75rem;
 }
 
 nav ul {
@@ -124,53 +121,43 @@ nav ul {
     width: 100%;
     margin: 0;
     padding: 0;
-    text-align: center;
     display: flex;
 }
 
 nav li {
     flex: 1;
-    text-align: center;
 }
 
 nav li a {
     display: block;
     color: #222222;
-    padding: 0;
     text-decoration: none;
-    text-align: center; 
     font-family: "Lilita One", sans-serif;
-    font-size: 20px;
-    line-height: 60px;
+    font-size: 1.25rem;
+    line-height: 3.75rem;
 }
 
-.container li :hover {
+nav li a:hover {
     color: #5a643a;
 }
 
 /*******w******** 
     fish.php
 ****************/
-.container-py2 h1{
+.container-py2 h1 {
     font-family: "Alfa Slab One", serif;
     text-align: center;
-    margin-top: 30px;
-    font-size: 40px;
-    margin-bottom: 50px;
+    margin-top: 2rem;
+    font-size: 2.5rem;
+    margin-bottom: 3rem;
     color: #222222;
 }
 
 .fish h3 {
-    font-family:"Alfa Slab One", serif;
-    font-size: 22px;
+    font-family: "Alfa Slab One", serif;
+    font-size: 1.375rem;
     font-weight: 500;
     color: #5a643a;
-
-}
-
-#fish-post img {
-    width: 400px;
-    height: 200px;
 }
 
 /*******w******** 
@@ -180,50 +167,45 @@ nav li a {
     text-decoration: none;
     color: #5a643a;
     font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
-    padding-left: 3px;
-    margin-bottom: 40px;
+    padding-left: 0.25rem;
+    margin-bottom: 2.5rem;
     font-weight: 800;
 }
 
-.catchlog img {
-    width: 450px;
-    height: 225px;
-}
-
-.catchlogtitle h2 :hover {
+.catchlogtitle h2:hover {
     color: #222222;
 }
 
 .catchlogtitle h2, h2 a {
     font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
-    padding-left: 3px;
-    margin-bottom: 50px;
+    padding-left: 0.25rem;
+    margin-bottom: 3rem;
     font-weight: 800;
 }
 
 .catchlog {
-    margin-left: 5px;
+    margin-left: 0.25rem;
 }
 
 .catchlog h2 {
     font-family: "Alfa Slab One", serif;
     font-weight: 500;
-    font-size: 27px;
+    font-size: 1.6875rem;
     color: #5a643a;
 }
 
 .catchlog h3 {
     font-family: "Alfa Slab One", serif;
-    font-size: 20px;
+    font-size: 1.25rem;
     font-weight: 400;
     color: #5a643a;
-    margin-bottom: 2px;
+    margin-bottom: 0.125rem;
 }
 
-.catchlog small, .catchlog a{
+.catchlog small, .catchlog a {
     font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
     color: #222222;
-    font-size: 16px;
+    font-size: 1rem;
     font-weight: 600;
 }
 
@@ -240,18 +222,18 @@ nav li a {
     postcatch.php & editcatch.php
 ****************/
 .postcatch-title h1 {
-    font-size: 35px;
-    letter-spacing: 1.4px;
-    padding-bottom: 17px;
+    font-size: 2rem;
+    letter-spacing: 0.1rem;
+    padding-bottom: 1rem;
 }
 
 .postcatch ul {
     list-style: none;
-    margin-right: 20px;
+    margin-right: 1rem;
 }
 
 .postcatch li {
-    margin-bottom: 10px;
+    margin-bottom: 0.625rem;
 }
 
 .postcatch button {
@@ -260,17 +242,17 @@ nav li a {
 
 .postcatch label {
     display: block;
-    padding-bottom: 10px;
+    padding-bottom: 0.625rem;
     font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
-    font-size: 20px;
+    font-size: 1.25rem;
     font-weight: 600;
 }
 
 /*******w******** 
     masteranglers.php
 ****************/
-.mastertitle h1{
-    padding-bottom: 30px;
+.mastertitle h1 {
+    padding-bottom: 2rem;
 }
 
 /*******w******** 
@@ -278,7 +260,7 @@ nav li a {
 ****************/
 .review-title h2 {
     font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
-    margin-bottom: 50px;
+    margin-bottom: 3rem;
     font-weight: 800;
     text-align: center;
 }
@@ -287,19 +269,19 @@ nav li a {
     text-decoration: none;
     color: #5a643a;
     font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
-    padding-left: 3px;
-    margin-bottom: 40px;
+    padding-left: 0.25rem;
+    margin-bottom: 2.5rem;
     font-weight: 800;
 }
 
-.review-title h2 :hover {
+.review-title h2:hover {
     color: #222222;
 }
 
-.review-post-date small, .review-post-date a{
+.review-post-date small, .review-post-date a {
     font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
     color: #222222;
-    font-size: 16px;
+    font-size: 1rem;
     font-weight: 600;
 }
 
@@ -317,20 +299,20 @@ nav li a {
 ****************/
 .showreviewtitle h2 {
     font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
-    padding-top: 20px;
-    font-size: 30px;
+    padding-top: 1.25rem;
+    font-size: 1.875rem;
 }
 
 .showreview small {
     font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
     color: #222222;
-    font-size: 16px;
+    font-size: 1rem;
     font-weight: 600;
 }
 
 .showreview p {
     font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
-    font-size: large;
+    font-size: 1.125rem;
     font-weight: 500;
 }
 
@@ -338,18 +320,18 @@ nav li a {
     editreview.php & postreview.php
 ****************/
 .postreview h1 {
-    font-size: 35px;
-    letter-spacing: 1.4px;
-    padding-bottom: 17px;
+    font-size: 2rem;
+    letter-spacing: 0.1rem;
+    padding-bottom: 1rem;
 }
 
 #postreview ul {
     list-style: none;
-    margin-right: 20px;
+    margin-right: 1rem;
 }
 
 #postreview li {
-    margin-bottom: 20px;
+    margin-bottom: 1.25rem;
 }
 
 #postreview button {
@@ -357,50 +339,51 @@ nav li a {
 }
 
 #title input {
-    width: 300px;
+    width: 90%;
+    max-width: 300px;
 }
 
 .reviewbutton input {
-    width: 110px;
+    width: 90%;
+    max-width: 110px;
 }
 
 #postreview textarea {
-    width: 400px;
+    width: 90%;
+    max-width: 400px;
 }
 
 #postreview label {
     display: block;
-    padding-bottom: 10px;
+    padding-bottom: 0.625rem;
     font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
-    font-size: 20px;
+    font-size: 1.25rem;
     font-weight: 600;
 }
-
 
 /*******w******** 
     bookstay.php
 ****************/
 .staytitle h1 {
-    font-size: 35px;
-    letter-spacing: 1.4px;
-    padding-bottom: 17px;
+    font-size: 2rem;
+    letter-spacing: 0.1rem;
+    padding-bottom: 1rem;
 }
 
 .staytitle p {
-    font-size: 19px;
+    font-size: 1.1875rem;
     font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
-    padding-bottom: 25px;
+    padding-bottom: 1.5625rem;
     text-align: center;
-    
 }
 
 #bookstay ul {
     list-style: none;
-    margin-right: 20px;
+    margin-right: 1.25rem;
 }
 
 #bookstay li {
-    margin-bottom: 10px;
+    margin-bottom: 0.625rem;
 }
 
 .wrapper button {
@@ -409,9 +392,9 @@ nav li a {
 
 #bookstay label {
     display: block;
-    margin-bottom: -5px;
+    margin-bottom: -0.3125rem;
     font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
-    font-size: 20px;
+    font-size: 1.25rem;
     font-weight: 600;
 }
 
@@ -421,87 +404,53 @@ nav li a {
 footer {
     text-align: center;
     font-family: "Holtwood One SC", serif;
-    font-weight:200;
-    font-size: 25px;
-    margin-top: 30px;
-    padding: 10px;
+    font-weight: 200;
+    font-size: 1.5625rem;
+    margin-top: 2rem;
+    padding: 0.625rem;
     background-color: #C2B280;
     color: #222222;
 }
 
-@media (max-width: 600px) {
-#wrapper h1{
-    font-size: 8vw;
-} 
+/* Media Queries for Mobile Devices */
+@media (max-width: 768px) {
+    body {
+        width: 100%;
+    }
 
-.nav {
-    display: none;
-}
+    main h1 {
+        font-size: 1.75rem;
+    }
 
-header {
-    display: flex;
-    justify-content: center;
-    height: 46vw;
-}
+    .index h2 {
+        font-size: 1.5rem;
+    }
 
-.mobilenavbar {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
+    nav li a {
+        font-size: 1rem;
+    }
 
-.menu-toggle {
-    background-color: transparent;
-    color: #222222;
-    font-size: 22px;
-    font-weight: 900;
-    border: none;
-    cursor: pointer;
-}
+    .container-py2 h1 {
+        font-size: 2rem;
+    }
 
-.menu {
-    list-style-type: none;
-    background-color: #444;
-    position: absolute;
-    top: 47vw;
-    left: 20;
-    width: 80%;
-    display: none;
-    z-index: 1000;
-    text-align: center;
-}
+    .catchlogtitle h2, h2 a {
+        font-size: 1.5rem;
+    }
 
-.menu li {
-    border-bottom: 1px solid #555;
-}
+    .catchlog h2 {
+        font-size: 1.5rem;
+    }
 
-.menu li a {
-    display: block;
-    padding: 7px 12px;
-    color: white;
-    text-decoration: none;
-}
+    .postcatch-title h1, .postreview h1, .staytitle h1 {
+        font-size: 1.75rem;
+    }
 
-.menu li a:hover {
-    background-color: #555;
-}
+    #postreview textarea, #title input, .reviewbutton input {
+        width: 100%;
+    }
 
-.text-center img {
-    width: 350px;
-    height: 175px;
-}
-
-#fish-post img {
-    width: 200px;
-    height: 100px;
-}
-
-.catchlog img {
-    width: 225px;
-    height: 112px;
-}
-
-.footer {
-    font-size: 3vw;
-}
+    footer {
+        font-size: 1.25rem;
+    }
 }
