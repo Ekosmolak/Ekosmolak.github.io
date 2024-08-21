@@ -38,7 +38,7 @@ $statement->execute();
 
     <div id="wrapper">
         <main>
-        <h1>Vist Lake of the Woods Best Fishing Lodge!</h1>
+            <h1>Vist Lake of the Woods Best Fishing Lodge!</h1>
         </main>
         <div class="index">
             <h2>Here are some of our latest reviews!</h2>
